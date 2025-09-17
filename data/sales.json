@@ -1,0 +1,12 @@
+[
+    {
+        "user": "juan",
+        "items": [
+            {
+                "product": "Croquetas",
+                "quantity": 2
+            }
+        ],
+        "total": 3000
+    }
+]
