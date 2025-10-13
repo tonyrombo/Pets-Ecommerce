@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
-from users import register_user, get_users, login_user
+from users import delete_user, register_user, get_users, login_user, update_user
 from products import add_product, get_products, update_product, delete_product
-from sales import add_sale, get_sales, delete_sale
+from sales import add_sale, get_sales, delete_sale, update_sale
 
 app = Flask(__name__)
 
@@ -19,6 +19,15 @@ def create_user():
 def login():
     credentials = request.json
     return jsonify(login_user(credentials))
+
+@app.route("/users/<user_id>", methods=["PUT"])
+def update_user_route(user_id):
+    new_data = request.json
+    return jsonify(update_user(user_id, new_data))
+
+@app.route("/users/<user_id>", methods=["DELETE"])
+def delete_user_route(user_id):
+    return jsonify(delete_user(user_id))
 
 # --- Product Endpoints ---
 @app.route("/products", methods=["GET"])
@@ -48,6 +57,11 @@ def list_sales():
 def create_sale():
     sale = request.json
     return jsonify(add_sale(sale)), 201
+
+@app.route("/sales/<sale_id>", methods=["PUT"])
+def update_sale_route(sale_id):
+    new_data = request.json
+    return jsonify(update_sale(sale_id, new_data))
 
 @app.route("/sales/<sale_id>", methods=["DELETE"])
 def delete_sale_route(sale_id):

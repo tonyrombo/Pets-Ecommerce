@@ -27,3 +27,20 @@ def login_user(credentials):
         if u["username"] == credentials.get("username") and u["password"] == credentials.get("password"):
             return {"message": "Login successful", "user": u}
     return {"error": "Invalid username or password"}
+
+def update_user(user_id, new_data):
+    """Update user data"""
+    users = read_json(USERS_FILE)
+    for u in users:
+        if u["id"] == user_id:
+            u.update(new_data)
+            write_json(USERS_FILE, users)
+            return u
+    return {"error": "User not found"}
+
+def delete_user(user_id):
+    """Delete a user by ID"""
+    users = read_json(USERS_FILE)
+    users = [u for u in users if u.get("id") != user_id]
+    write_json(USERS_FILE, users)
+    return {"message": "User deleted"}
