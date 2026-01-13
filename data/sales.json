@@ -1,0 +1,13 @@
+[
+    {
+			"user": "john",
+			"items": [
+				{
+					"product": "Dog Food",
+					"quantity": 2
+				}
+			],
+			"total": 31.98,
+			"id": "025a2e69-7223-47c4-bd9c-2091dfd8bdf9"
+		}
+]
